@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>GitHub Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="container">
+    <h1 class="jumotron text-center">GitHub Users</h1>
+  
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-6">
+        <form action="/" method="POST">
+          <div class="input-group">
+            <input type="text" name="username" class="form-control" placeholder="Enter a GitHub Username">
+            <span class="input-group-btn">
+              <button class="btn btn-success">Go!</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row col-xs-8 col-xs-offset-2">
+      <% if (userData) { %>
+        <%= userData %>
+      <% } else { %>
+        <h3 class="text-center text-info">
+          Submit a GitHub username!
+        </h3>
+      <% } %>
+    </div>
   </body>
 </html>
