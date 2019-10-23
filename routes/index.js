@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req, res){
+  //set up the options url with headers
   var options = {
     url: rootURL + 'users/' + req.body.username,
     headers: {
@@ -17,10 +18,16 @@ router.post('/',function(req, res){
     } 
   };
   request( options, function(err, response, body){
+    // update options url to fetch user's repos
     var userData = JSON.parse(body);  
-    console.log(userData)
-    res.render('index', {userData});
-    });
+    options.url = userData.repos_url;
+    request(options, function(err, response, body){
+      // add a repos property
+      userData.repos = JSON.parse(body);
+      console.log(userData.repos[0].name);
+      res.render('index', {userData})
+      });
+  });
 });
 
 module.exports = router;

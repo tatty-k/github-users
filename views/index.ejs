@@ -8,7 +8,7 @@
   <body class="container">
     <h1 class="jumotron text-center">GitHub Users</h1>
   
-    <div class="row">
+    <div class="container">
       <div class="col-xs-6 col-xs-offset-6">
         <form action="/" method="POST">
           <div class="input-group">
@@ -22,17 +22,22 @@
     </div>
 
     <hr>
-    <div class="row col-xs-8 col-xs-offset-2">
+    <div class="container">
       <% if (userData) { %>
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-            <img src="<%= userData.avatar_url %>"
-              class="img-circle" width="300">
+            <img src="<%= userData.avatar_url %>" width="300">
             <h2><%= userData.login %></h2>
           </div>
           <div class="panel-body">
             <h3>Repos:</h3>
-            need to list repos here...
+            <div class="list-group">
+              <% userData.repos.forEach(function (repo){ %>
+              <a href="<%=repo.html_url %>" target="_blank">
+                <%=repo.name %>
+              </a>
+              <%});%>
+            </div>
           </div>
         </div>
       <% } else { %>
