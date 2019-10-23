@@ -9,13 +9,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req, res){
-  request(
-    rootURL + 'users/' + req.body.username + 
-    '?access_token=' + process.env.GITHUB_TOKEN,
-    function(err, response, body){
-      res.render('index', {userData: body});
-    }
-  )
-})
+  var options = {
+    url: rootURL + 'users/' + req.body.username,
+    headers: {
+      'User-Agent': 'tatty-k', 
+      'Authorization': 'token ' + process.env.GITHUB_TOKEN
+    } 
+  };
+  request( options, function(err, response, body){
+    var userData = JSON.parse(body);  
+    console.log(userData)
+    res.render('index', {userData});
+    });
+});
 
 module.exports = router;

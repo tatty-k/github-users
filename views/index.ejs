@@ -24,7 +24,17 @@
     <hr>
     <div class="row col-xs-8 col-xs-offset-2">
       <% if (userData) { %>
-        <%= userData %>
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <img src="<%= userData.avatar_url %>"
+              class="img-circle" width="300">
+            <h2><%= userData.login %></h2>
+          </div>
+          <div class="panel-body">
+            <h3>Repos:</h3>
+            need to list repos here...
+          </div>
+        </div>
       <% } else { %>
         <h3 class="text-center text-info">
           Submit a GitHub username!
